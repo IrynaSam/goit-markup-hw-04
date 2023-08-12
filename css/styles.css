@@ -95,6 +95,7 @@ button {
   text-decoration: none;
 }
 .nav-link {
+  display: inline-block;
   color: var(--primary-title-color);
   padding: 24px 0;
   transition: color var(--transitio-dur-and-func);
@@ -111,7 +112,7 @@ button {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: -1px;
   background-color: var(--active-link-color);
   width: 100%;
   height: 4px;
@@ -161,6 +162,10 @@ button {
   padding: 12px 24px;
   border-radius: 4px;
   border: 1px solid var(--accent-hairlines-color);
+  transition: color var(--transitio-dur-and-func),
+    background-color var(--transitio-dur-and-func),
+    border-color var(--transitio-dur-and-func),
+    box-shadow var(--transitio-dur-and-func);
 }
 .gallery-container {
   padding-top: 96px;
@@ -213,6 +218,7 @@ button {
   padding: 40px 32px 164px;
   transform: translateY(100%);
   transition: transform var(--transitio-dur-and-func);
+  padding: 40px 32px;
 }
 
 .portfolio-list-item:hover .overlay,
@@ -237,24 +243,35 @@ button {
   transition: box-shadow var(--transitio-dur-and-func);
 }
 
-.portfolio-list-item:hover .portfolio-description,
-.portfolio-list-item:focus .portfolio-description {
+.portfolio-link:hover .portfolio-description,
+.portfolio-link:focus .portfolio-description {
   box-shadow: 0px 2px 1px 0px rgba(46, 47, 66, 0.08),
     0px 1px 1px 0px rgba(46, 47, 66, 0.16),
     0px 1px 6px 0px rgba(46, 47, 66, 0.08);
 }
 
+.portfolio-link {
+  display: block;
+}
+
 .team-card-social-linkslist {
   display: flex;
   justify-content: center;
-  column-gap: 24px;
-  margin-bottom: 32px;
+  gap: 24px;
+  /* margin-bottom: 32px; */
 }
 
 .team-card-social-links {
   display: flex;
   width: 40px;
   height: 40px;
+}
+.team-card-social-list-item {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   background-color: var(--primary-acent-color);
   border-radius: 50%;
   align-items: center;
@@ -262,29 +279,53 @@ button {
   transition: background-color var(--transitio-dur-and-func);
 }
 
-.team-card-social-list-item {
+.team-card-social-list-item:hover,
+.team-card-social-list-item:focus {
+  background-color: var(--active-link-color);
+}
+
+.team-card-social-list-item-footer {
   text-decoration: none;
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-acent-color);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
 }
 
-.team-card-social-links:hover,
-.team-card-social-links:focus {
-  background-color: var(--active-link-color);
+.team-card-social-list-item-footer:hover,
+.team-card-social-list-item-footer:focus {
+  background-color: var(--success-color);
+}
+
+.social-icon-item {
+  fill: var(--btn-bg-color);
 }
 
 .customer-list {
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 24px;
-  margin-top: 72px;
+  gap: 24px;
+}
+
+.customers-title {
+  margin-bottom: 72px;
 }
 
 .customers-section {
   padding-top: 120px;
   padding-bottom: 120px;
   background-color: var(--primary-white-color);
+}
+
+.customer-list-item {
+  width: calc((100% - 120px) / 6);
+  height: 88px;
+  transition: var(--transitio-dur-and-func);
 }
 
 .customer-card {
@@ -294,11 +335,12 @@ button {
   border: 1px solid var(--subtle-text);
   border-radius: 4px;
   transition: border-color var(--transitio-dur-and-func);
+  align-items: center;
+  color: var(--subtle-text);
 }
 
 .customer-icon {
-  fill: var(--subtle-text);
-  transition: fill var(--transitio-dur-and-func);
+  fill: currentColor;
 }
 
 .customer-card:hover .customer-icon,
@@ -308,7 +350,8 @@ button {
 
 .customer-card:hover,
 .customer-card:focus {
-  border: 1px solid var(--active-link-color);
+  border-color: var(--active-link-color);
+  color: var(--active-link-color);
 }
 
 .text-footer {
@@ -318,13 +361,12 @@ button {
   width: 264px;
 }
 
-.title-socials {
+.text-socials {
   font-family: Roboto;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.5;
-  letter-spacing: 0.32px;
+  letter-spacing: 0.02em;
   color: var(--primary-white-color);
   margin-bottom: 16px;
 }
@@ -345,6 +387,8 @@ button {
     ),
     url(../images/hero/hero-img.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .page-title {
   color: var(--primary-white-color);
@@ -405,6 +449,9 @@ button {
 .background-white-header {
   background-color: var(--primary-white-color);
   border-bottom: 1px solid var(--accent-hairlines-color);
+  box-shadow: 0px 1px 6px 0px rgba(46, 47, 66, 0.08),
+    0px 1px 1px 0px rgba(46, 47, 66, 0.16),
+    0px 2px 1px 0px rgba(46, 47, 66, 0.08);
 }
 .background-white {
   padding-bottom: 120px;
@@ -419,7 +466,10 @@ button {
 }
 
 .benefits-icon {
-  padding: 24px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
   background-color: var(--btn-bg-color);
   border-radius: 4px;
   margin-bottom: 8px;
@@ -449,11 +499,14 @@ button {
 }
 .team-card-info {
   padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .footer-socials-list {
   display: flex;
-  column-gap: 16px;
+  gap: 16px;
 }
 
 .footer-socials-item {
@@ -488,9 +541,14 @@ button {
   text-transform: uppercase;
 }
 
+.footer-content {
+  margin-right: 120px;
+}
+
 .footer-container {
   display: flex;
   gap: 120px;
+  align-items: baseline;
 }
 /* =============BACKDROP============= */
 .backdrop {
@@ -501,6 +559,8 @@ button {
   width: 100%;
   height: 100%;
   background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .is-hidden {
@@ -512,15 +572,16 @@ button {
 /* ================MODAL================ */
 .modal {
   position: absolute;
-  top: 80px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 408px;
-  height: 584px;
+  min-height: 584px;
   border-radius: 4px;
   background: var(--modal-background-color);
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+  transition: transform var(--transitio-dur-and-func);
 }
 .close-btn {
   position: absolute;
@@ -535,4 +596,19 @@ button {
   width: 24px;
   height: 24px;
   background-color: var(--accent-hairlines-color);
+  transition: background-color var(--transitio-dur-and-func);
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  background-color: var(--active-link-color);
+  border: none;
+}
+
+.close-btn-icon {
+  transition: fill var(--transitio-dur-and-func);
+}
+.close-btn:hover .close-btn-icon,
+.close-btn:focus .close-btn-icon {
+  fill: var(--primary-white-color);
 }
